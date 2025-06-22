@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: desfsia251-postgres-dev
+    environment:
+      POSTGRES_DB: desfsia251
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+    networks:
+      - desfsia251-network
+
+volumes:
+  pgdata_dev:
+
+networks:
+  desfsia251-network:
