@@ -2,18 +2,18 @@ package br.com.arturbarth.desfsia251.model.service;
 
 import br.com.arturbarth.desfsia251.dto.ProdutoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ProdutoResponseDTO;
-import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
+import br.com.arturbarth.desfsia251.model.exception.ProdutoNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Produto;
 import br.com.arturbarth.desfsia251.model.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
 
+    public static final String PRODUTO_NAO_ENCONTRADO_COM_ID = "Produto não encontrado com ID: ";
     private final ProdutoRepository produtoRepository;
 
     public ProdutoServiceImpl(ProdutoRepository produtoRepository) {
@@ -25,13 +25,13 @@ public class ProdutoServiceImpl implements ProdutoService {
         return produtoRepository.findAll()
                 .stream()
                 .map(ProdutoResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
     public ProdutoResponseDTO buscarPorId(Long id) {
         Produto produto = produtoRepository.findById(id)
-                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado com ID: " + id));
+                .orElseThrow(() -> new ProdutoNotFoundException(PRODUTO_NAO_ENCONTRADO_COM_ID + id));
         return new ProdutoResponseDTO(produto);
     }
 
@@ -40,7 +40,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         List<Produto> produtos = produtoRepository.findByNomeContainingIgnoreCase(nome);
         return produtos.stream()
                 .map(ProdutoResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -48,7 +48,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         List<Produto> produtos = produtoRepository.findByCategoriaIgnoreCase(categoria);
         return produtos.stream()
                 .map(ProdutoResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -56,7 +56,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         List<Produto> produtos = produtoRepository.findProdutosDisponiveis();
         return produtos.stream()
                 .map(ProdutoResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -77,7 +77,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     public ProdutoResponseDTO atualizar(Long id, ProdutoRequestDTO produtoDTO) {
         Produto produtoExistente = produtoRepository.findById(id)
-                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado com ID: " + id));
+                .orElseThrow(() -> new ProdutoNotFoundException(PRODUTO_NAO_ENCONTRADO_COM_ID + id));
 
         alimentarCamposDoProduto(produtoDTO, produtoExistente);
 
@@ -87,14 +87,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     public void deletar(Long id) {
         if (!produtoRepository.existsById(id)) {
-            throw new ProdutoNotFoundException("Produto não encontrado com ID: " + id);
+            throw new ProdutoNotFoundException(PRODUTO_NAO_ENCONTRADO_COM_ID + id);
         }
         produtoRepository.deleteById(id);
     }
 
     public void inativar(Long id) {
         Produto produto = produtoRepository.findById(id)
-                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado com ID: " + id));
+                .orElseThrow(() -> new ProdutoNotFoundException(PRODUTO_NAO_ENCONTRADO_COM_ID + id));
 
         produto.setAtivo(false);
         produtoRepository.save(produto);

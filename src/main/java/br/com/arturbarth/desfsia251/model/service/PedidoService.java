@@ -11,5 +11,7 @@ public interface PedidoService {
     PedidoResponseDTO atualizar(Long id, PedidoRequestDTO pedidoDTO);
     void deletar(Long id);
     long contarPedidos();
+
+    List<PedidoResponseDTO> listarPedidosPorCliente(Long clienteId);
 }
 

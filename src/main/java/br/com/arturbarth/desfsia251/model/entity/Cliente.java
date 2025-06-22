@@ -40,6 +40,11 @@ public class Cliente {
     @Column(nullable = false, length = 15)
     private String telefone;
 
+    @NotBlank(message = "CPF é obrigatório")
+    @Size(min = 12, max = 15, message = "CPF deve ter no máximo 15 caracteres")
+    @Column(nullable = false, length = 15)
+    private String cpf;
+
     @Column(nullable = false)
     private Boolean ativo = true;
 

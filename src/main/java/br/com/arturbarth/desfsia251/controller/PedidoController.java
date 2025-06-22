@@ -57,5 +57,12 @@ public class PedidoController {
         pedidoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<PedidoResponseDTO>> listarPedidosPorCliente(@PathVariable Long clienteId) {
+        List<PedidoResponseDTO> pedidos = pedidoService.listarPedidosPorCliente(clienteId);
+        return ResponseEntity.ok(pedidos);
+    }
+
 }
 

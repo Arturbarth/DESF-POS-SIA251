@@ -2,10 +2,9 @@ package br.com.arturbarth.desfsia251.model.service;
 
 import br.com.arturbarth.desfsia251.dto.PedidoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.PedidoResponseDTO;
-import br.com.arturbarth.desfsia251.dto.PedidoItemRequestDTO;
-import br.com.arturbarth.desfsia251.exception.ClienteNotFoundException;
-import br.com.arturbarth.desfsia251.exception.PedidoNotFoundException;
-import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
+import br.com.arturbarth.desfsia251.model.exception.ClienteNotFoundException;
+import br.com.arturbarth.desfsia251.model.exception.PedidoNotFoundException;
+import br.com.arturbarth.desfsia251.model.exception.ProdutoNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Cliente;
 import br.com.arturbarth.desfsia251.model.entity.Pedido;
 import br.com.arturbarth.desfsia251.model.entity.PedidoItem;
@@ -34,7 +33,7 @@ public class PedidoServiceImpl implements PedidoService {
     public List<PedidoResponseDTO> listarTodos() {
         return pedidoRepository.findAll().stream()
                 .map(PedidoResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -90,8 +89,18 @@ public class PedidoServiceImpl implements PedidoService {
             item.setQuantidade(itemDTO.getQuantidade());
             item.setPedido(pedido);
             return item;
-        }).collect(Collectors.toList());
+        }).toList();
         pedido.setItens(itens);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PedidoResponseDTO> listarPedidosPorCliente(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado com ID: " + clienteId));
+        List<Pedido> pedidos = pedidoRepository.findByCliente(cliente);
+        return pedidos.stream()
+                .map(PedidoResponseDTO::new)
+                .toList();
     }
 }
 

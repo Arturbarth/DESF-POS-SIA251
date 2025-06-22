@@ -2,7 +2,7 @@ package br.com.arturbarth.desfsia251.model.service;
 
 import br.com.arturbarth.desfsia251.dto.ClienteRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ClienteResponseDTO;
-import br.com.arturbarth.desfsia251.exception.ClienteNotFoundException;
+import br.com.arturbarth.desfsia251.model.exception.ClienteNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Cliente;
 import br.com.arturbarth.desfsia251.model.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
     public List<ClienteResponseDTO> listarTodos() {
         return clienteRepository.findAll().stream()
                 .map(ClienteResponseDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -81,6 +81,20 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setNome(dto.getNome());
         cliente.setEmail(dto.getEmail());
         cliente.setTelefone(dto.getTelefone());
+    }
+
+    @Override
+    public List<ClienteResponseDTO> buscarPorCpf(String nome) {
+        return clienteRepository.findByCpf(nome).stream()
+                .map(ClienteResponseDTO::new)
+                .toList();
+    }
+
+    @Override
+    public List<ClienteResponseDTO> buscarPorEmail(String email) {
+        return clienteRepository.findByEmail(email).stream()
+                .map(ClienteResponseDTO::new)
+                .toList();
     }
 }
 

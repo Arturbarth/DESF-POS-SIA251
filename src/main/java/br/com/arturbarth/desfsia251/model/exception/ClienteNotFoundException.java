@@ -1,4 +1,4 @@
-package br.com.arturbarth.desfsia251.exception;
+package br.com.arturbarth.desfsia251.model.exception;
 
 public class ClienteNotFoundException extends RuntimeException {
 

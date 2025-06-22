@@ -107,6 +107,19 @@ cd produto-api
 | GET | `/api/produtos/contar` | Contar produtos |
 | PATCH | `/api/produtos/{id}/inativar` | Inativar produto |
 
+## Funcionalidades implementadas além do escopo inicial
+
+- **Gestão de Clientes**: CRUD completo para clientes, incluindo campos de nome, email, telefone, CPF, status (ativo/inativo) e datas de criação/atualização.
+- **Gestão de Pedidos**: CRUD completo para pedidos, com relacionamento a clientes e itens de pedido.
+- **Itens do Pedido**: Cada pedido pode conter múltiplos itens, vinculados a produtos e com quantidade.
+- **Status do Pedido**: Campo enumerado para status do pedido (PENDENTE, FATURADO, ENTREGUE), com valor padrão PENDENTE.
+- **Validações Avançadas**: Uso de anotações de validação (javax.validation) para garantir integridade dos dados em todas as entidades.
+- **Auditoria**: Campos automáticos de data de criação e atualização em todas as entidades principais.
+- **Scripts SQL**: Arquivos `schema.sql` e `data.sql` atualizados para refletir todas as entidades, relacionamentos e dados de exemplo.
+- **Testes Unitários**: Testes unitários completos para ProdutoService, ClienteService e PedidoService, cobrindo cenários de sucesso e exceção.
+- **Endpoints REST**: Controllers REST para produtos, clientes e pedidos, seguindo boas práticas de arquitetura e DTOs.
+- **Exceções customizadas**: Tratamento de exceções específicas para entidades não encontradas e validação de regras de negócio.
+
 ## 📝 Exemplos de Uso
 
 ### Criar Produto
@@ -174,6 +187,14 @@ mvn test
 - [x] Testes unitários
 - [x] Documentação Swagger/OpenAPI
 - [x] Deploy containerizado
+- [x] Gestão de Clientes
+- [x] Gestão de Pedidos
+- [x] Itens do Pedido
+- [x] Status do Pedido
+- [x] Validações Avançadas
+- [x] Auditoria
+- [x] Scripts SQL atualizados
+- [x] Exceções customizadas
 
 ### 🔄 Melhorias Futuras
 - [ ] Autenticação e autorização

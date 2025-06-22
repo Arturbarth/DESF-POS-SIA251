@@ -13,12 +13,14 @@ public class PedidoResponseDTO {
     private ClienteResponseDTO cliente;
     private List<PedidoItemResponseDTO> itens;
     private BigDecimal valorTotal;
+    private String status;
 
     public PedidoResponseDTO(Pedido pedido) {
         this.id = pedido.getId();
         this.cliente = new ClienteResponseDTO(pedido.getCliente());
         this.itens = pedido.getItens().stream().map(PedidoItemResponseDTO::new).toList();
         this.valorTotal = pedido.getValorTotal();
+        this.status = pedido.getStatus().name();
     }
 }
 

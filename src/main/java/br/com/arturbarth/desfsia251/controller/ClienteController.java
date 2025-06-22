@@ -67,5 +67,18 @@ public class ClienteController {
         clienteService.inativar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<List<ClienteResponseDTO>> buscarPorCpf(@PathVariable String cpf) {
+        List<ClienteResponseDTO> clientes = clienteService.buscarPorCpf(cpf);
+        return ResponseEntity.ok(clientes);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<List<ClienteResponseDTO>> buscarPorEmail(@PathVariable String email) {
+        List<ClienteResponseDTO> clientes = clienteService.buscarPorEmail(email);
+        return ResponseEntity.ok(clientes);
+    }
+
 }
 

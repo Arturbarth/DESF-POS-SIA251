@@ -9,6 +9,8 @@ public interface ClienteService {
     ClienteResponseDTO buscarPorId(Long id);
     ClienteResponseDTO salvar(ClienteRequestDTO clienteDTO);
     ClienteResponseDTO atualizar(Long id, ClienteRequestDTO clienteDTO);
+    List<ClienteResponseDTO> buscarPorCpf(String cpf);
+    List<ClienteResponseDTO> buscarPorEmail(String email);
     void deletar(Long id);
     void inativar(Long id);
     long contarClientes();

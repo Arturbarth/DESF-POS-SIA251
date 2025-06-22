@@ -8,3 +8,20 @@ SELECT * FROM (VALUES
     ('Headphone Sony WH-1000XM4', 'Headphone com cancelamento de ruído', 1299.99, 'Eletrônicos', 15, true)
 ) AS temp(nome, descricao, preco, categoria, estoque, ativo)
 WHERE NOT EXISTS (SELECT 1 FROM produtos);
+
+-- Inserir clientes de exemplo
+INSERT INTO cliente (nome, email, telefone, cpf, ativo)
+SELECT * FROM (VALUES
+    ('João da Silva', 'joao@email.com', '11999999999', '123.456.789-10', true),
+    ('Maria Oliveira', 'maria@email.com', '21988888888', '123.456.789-11', true),
+    ('Carlos Souza', 'carlos@email.com', '31977777777', '123.456.789-12', false)
+) AS temp(nome, email, telefone, ativo)
+WHERE NOT EXISTS (SELECT 1 FROM cliente);
+
+-- Inserir pedidos de exemplo
+INSERT INTO pedido (cliente_id, valor_total, status)
+SELECT c.id, 0, 'PENDENTE' FROM cliente c WHERE NOT EXISTS (SELECT 1 FROM pedido);
+
+-- Inserir itens de pedido de exemplo
+INSERT INTO pedido_item (pedido_id, produto_id, quantidade)
+SELECT p.id, pr.id, 2 FROM pedido p, produtos pr WHERE NOT EXISTS (SELECT 1 FROM pedido_item) LIMIT 1;
