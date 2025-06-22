@@ -2,10 +2,9 @@ package br.com.arturbarth.desfsia251.service;
 
 import br.com.arturbarth.desfsia251.dto.ClienteRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ClienteResponseDTO;
-import br.com.arturbarth.desfsia251.model.exception.ClienteNotFoundException;
+import br.com.arturbarth.desfsia251.exception.ClienteNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Cliente;
 import br.com.arturbarth.desfsia251.model.repository.ClienteRepository;
-import br.com.arturbarth.desfsia251.model.service.ClienteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

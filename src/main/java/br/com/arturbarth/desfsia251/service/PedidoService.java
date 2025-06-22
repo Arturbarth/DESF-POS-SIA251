@@ -1,4 +1,4 @@
-package br.com.arturbarth.desfsia251.model.service;
+package br.com.arturbarth.desfsia251.service;
 
 import br.com.arturbarth.desfsia251.dto.PedidoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.PedidoResponseDTO;

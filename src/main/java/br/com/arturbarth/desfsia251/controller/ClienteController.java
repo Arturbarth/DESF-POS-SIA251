@@ -2,7 +2,7 @@ package br.com.arturbarth.desfsia251.controller;
 
 import br.com.arturbarth.desfsia251.dto.ClienteRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ClienteResponseDTO;
-import br.com.arturbarth.desfsia251.model.service.ClienteService;
+import br.com.arturbarth.desfsia251.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,7 @@
 package br.com.arturbarth.desfsia251.model.entity;
 
 
+import br.com.arturbarth.desfsia251.controller.PedidoController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

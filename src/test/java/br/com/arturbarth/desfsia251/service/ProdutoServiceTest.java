@@ -2,10 +2,9 @@ package br.com.arturbarth.desfsia251.service;
 
 import br.com.arturbarth.desfsia251.dto.ProdutoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ProdutoResponseDTO;
-import br.com.arturbarth.desfsia251.model.exception.ProdutoNotFoundException;
+import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Produto;
 import br.com.arturbarth.desfsia251.model.repository.ProdutoRepository;
-import br.com.arturbarth.desfsia251.model.service.ProdutoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

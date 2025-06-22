@@ -1,4 +1,4 @@
-package br.com.arturbarth.desfsia251.model.exception;
+package br.com.arturbarth.desfsia251.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,10 +1,10 @@
-package br.com.arturbarth.desfsia251.model.service;
+package br.com.arturbarth.desfsia251.service;
 
 import br.com.arturbarth.desfsia251.dto.PedidoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.PedidoResponseDTO;
-import br.com.arturbarth.desfsia251.model.exception.ClienteNotFoundException;
-import br.com.arturbarth.desfsia251.model.exception.PedidoNotFoundException;
-import br.com.arturbarth.desfsia251.model.exception.ProdutoNotFoundException;
+import br.com.arturbarth.desfsia251.exception.ClienteNotFoundException;
+import br.com.arturbarth.desfsia251.exception.PedidoNotFoundException;
+import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
 import br.com.arturbarth.desfsia251.model.entity.Cliente;
 import br.com.arturbarth.desfsia251.model.entity.Pedido;
 import br.com.arturbarth.desfsia251.model.entity.PedidoItem;
@@ -15,7 +15,6 @@ import br.com.arturbarth.desfsia251.model.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
