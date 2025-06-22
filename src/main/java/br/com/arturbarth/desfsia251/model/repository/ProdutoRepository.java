@@ -1,6 +1,6 @@
-package br.com.arturbarth.desfsia251.repository;
+package br.com.arturbarth.desfsia251.model.repository;
 
-import br.com.arturbarth.desfsia251.model.Produto;
+import br.com.arturbarth.desfsia251.model.entity.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

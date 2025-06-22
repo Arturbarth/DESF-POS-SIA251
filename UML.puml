@@ -1,0 +1,113 @@
+@startuml
+class br.com.arturbarth.desfsia251.dto.ProdutoRequestDTO {
+- String nome
+- String descricao
+- BigDecimal preco
+- String categoria
+- Integer estoque
+}
+
+class br.com.arturbarth.desfsia251.Desfsia251Application {
++ {static} void main(String[])
+}
+
+class br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException {
+}
+interface br.com.arturbarth.desfsia251.service.ProdutoService {
+~ List<ProdutoResponseDTO> listarTodos()
+~ ProdutoResponseDTO buscarPorId(Long)
+~ List<ProdutoResponseDTO> buscarPorNome(String)
+~ List<ProdutoResponseDTO> buscarPorCategoria(String)
+~ List<ProdutoResponseDTO> listarDisponiveis()
+~ long contarProdutos()
+~ long contarProdutosAtivos()
+~ ProdutoResponseDTO salvar(ProdutoRequestDTO)
+~ ProdutoResponseDTO atualizar(Long,ProdutoRequestDTO)
+~ void deletar(Long)
+~ void inativar(Long)
+}
+
+class br.com.arturbarth.desfsia251.controller.ProdutoController {
+- ProdutoService produtoService
++ ResponseEntity<List<ProdutoResponseDTO>> listarTodos()
++ ResponseEntity<ProdutoResponseDTO> buscarPorId(Long)
++ ResponseEntity<List<ProdutoResponseDTO>> buscarPorNome(String)
++ ResponseEntity<List<ProdutoResponseDTO>> buscarPorCategoria(String)
++ ResponseEntity<List<ProdutoResponseDTO>> listarDisponiveis()
++ ResponseEntity<Map<String,Long>> contarProdutos()
++ ResponseEntity<ProdutoResponseDTO> criarProduto(ProdutoRequestDTO)
++ ResponseEntity<ProdutoResponseDTO> atualizarProduto(Long,ProdutoRequestDTO)
++ ResponseEntity<Void> deletarProduto(Long)
++ ResponseEntity<Void> inativarProduto(Long)
+}
+
+
+class br.com.arturbarth.desfsia251.dto.ProdutoResponseDTO {
+- Long id
+- String nome
+- String descricao
+- BigDecimal preco
+- String categoria
+- Integer estoque
+- Boolean ativo
+- LocalDateTime dataCriacao
+- LocalDateTime dataAtualizacao
+}
+
+class br.com.arturbarth.desfsia251.model.Produto {
+- Long id
+- String nome
+- String descricao
+- BigDecimal preco
+- String categoria
+- Integer estoque
+- Boolean ativo
+- LocalDateTime dataCriacao
+- LocalDateTime dataAtualizacao
+}
+
+class br.com.arturbarth.desfsia251.exception.GlobalExceptionHandler {
++ ResponseEntity<Map<String,Object>> handleProdutoNotFound(ProdutoNotFoundException)
++ ResponseEntity<Map<String,Object>> handleValidationErrors(MethodArgumentNotValidException)
++ ResponseEntity<Map<String,Object>> handleGenericException(Exception)
+}
+
+interface br.com.arturbarth.desfsia251.repository.ProdutoRepository {
+~ List<Produto> findByNomeContainingIgnoreCase(String)
+~ List<Produto> findByCategoriaIgnoreCase(String)
+~ List<Produto> findByAtivoTrue()
+~ List<Produto> findByEstoqueGreaterThan(Integer)
+~ List<Produto> findByPrecoBetween(BigDecimal,BigDecimal)
+~ List<Produto> findProdutosDisponiveis()
+~ long countProdutosAtivos()
+~ List<Produto> buscarPorTermo(String)
+}
+
+class br.com.arturbarth.desfsia251.service.ProdutoServiceImpl {
+- ProdutoRepository produtoRepository
++ List<ProdutoResponseDTO> listarTodos()
++ ProdutoResponseDTO buscarPorId(Long)
++ List<ProdutoResponseDTO> buscarPorNome(String)
++ List<ProdutoResponseDTO> buscarPorCategoria(String)
++ List<ProdutoResponseDTO> listarDisponiveis()
++ long contarProdutos()
++ long contarProdutosAtivos()
++ ProdutoResponseDTO salvar(ProdutoRequestDTO)
++ ProdutoResponseDTO atualizar(Long,ProdutoRequestDTO)
++ void deletar(Long)
++ void inativar(Long)
+- Produto converterDTOParaEntidade(ProdutoRequestDTO)
+- {static} void alimentarCamposDoProduto(ProdutoRequestDTO,Produto)
+}
+
+
+class br.com.arturbarth.desfsia251.controller.ApplicationController {
++ String index()
+}
+
+
+
+br.com.arturbarth.desfsia251.exception.RuntimeException <|-- br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException
+org.springframework.data.jpa.repository.JpaRepository <|-- br.com.arturbarth.desfsia251.repository.ProdutoRepository
+br.com.arturbarth.desfsia251.service.ProdutoService <|.. br.com.arturbarth.desfsia251.service.ProdutoServiceImpl
+@enduml

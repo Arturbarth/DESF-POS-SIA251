@@ -1,11 +1,10 @@
-package br.com.arturbarth.desfsia251.service;
+package br.com.arturbarth.desfsia251.model.service;
 
 import br.com.arturbarth.desfsia251.dto.ProdutoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ProdutoResponseDTO;
 import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
-import br.com.arturbarth.desfsia251.model.Produto;
-import br.com.arturbarth.desfsia251.repository.ProdutoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.arturbarth.desfsia251.model.entity.Produto;
+import br.com.arturbarth.desfsia251.model.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

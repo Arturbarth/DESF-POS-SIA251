@@ -1,13 +1,9 @@
-package br.com.arturbarth.desfsia251.service;
+package br.com.arturbarth.desfsia251.model.service;
 
 import br.com.arturbarth.desfsia251.dto.ProdutoRequestDTO;
 import br.com.arturbarth.desfsia251.dto.ProdutoResponseDTO;
-import br.com.arturbarth.desfsia251.exception.ProdutoNotFoundException;
-import br.com.arturbarth.desfsia251.model.Produto;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface ProdutoService {
 

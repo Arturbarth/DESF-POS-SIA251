@@ -1,6 +1,6 @@
 package br.com.arturbarth.desfsia251.dto;
 
-import br.com.arturbarth.desfsia251.model.Produto;
+import br.com.arturbarth.desfsia251.model.entity.Produto;
 import lombok.Getter;
 import lombok.Setter;
 
