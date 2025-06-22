@@ -92,9 +92,23 @@ src/
 
 ## Como Executar
 
-1. Configure o banco de dados em `src/main/resources/application.yml`.
-2. Execute o banco (PostgreSQL recomendado) ou utilize H2.
-3. Rode a aplicação com `mvn spring-boot:run` ou via sua IDE.
+### Usando Docker (recomendado)
+
+1. Certifique-se de ter Docker e Docker Compose instalados.
+2. Execute o comando abaixo na raiz do projeto:
+   ```bash
+   docker-compose up --build
+   ```
+3. A aplicação estará disponível em `http://localhost:8080`.
+
+### Executando localmente (sem Docker)
+
+1. Configure o banco de dados em `src/main/resources/application.yml` (PostgreSQL recomendado ou H2 para testes).
+2. Certifique-se de que o banco está rodando.
+3. Execute o projeto com:
+   ```bash
+   mvn spring-boot:run
+   ```
 4. Os scripts `schema.sql` e `data.sql` serão executados automaticamente.
 5. Acesse os endpoints REST para testar as funcionalidades.
 
@@ -103,6 +117,38 @@ src/
 - `/api/produtos` - CRUD de produtos
 - `/api/clientes` - CRUD de clientes
 - `/api/pedidos` - CRUD de pedidos
+
+## Endpoints da Aplicação
+
+### Produtos
+- `GET    /api/produtos` — Lista todos os produtos
+- `GET    /api/produtos/{id}` — Busca produto por ID
+- `POST   /api/produtos` — Cria um novo produto
+- `PUT    /api/produtos/{id}` — Atualiza um produto existente
+- `DELETE /api/produtos/{id}` — Remove um produto
+- `GET    /api/produtos/nome/{nome}` — Busca produtos por nome
+- `GET    /api/produtos/categoria/{categoria}` — Busca produtos por categoria
+- `GET    /api/produtos/disponiveis` — Lista produtos ativos
+- `GET    /api/produtos/contar` — Conta o total de produtos
+- `PATCH  /api/produtos/{id}/inativar` — Inativa um produto
+
+### Clientes
+- `GET    /api/clientes` — Lista todos os clientes
+- `GET    /api/clientes/{id}` — Busca cliente por ID
+- `POST   /api/clientes` — Cria um novo cliente
+- `PUT    /api/clientes/{id}` — Atualiza um cliente existente
+- `DELETE /api/clientes/{id}` — Remove um cliente
+- `PATCH  /api/clientes/{id}/inativar` — Inativa um cliente
+- `GET    /api/clientes/contar` — Conta o total de clientes
+- `GET    /api/clientes/contar-ativos` — Conta clientes ativos
+
+### Pedidos
+- `GET    /api/pedidos` — Lista todos os pedidos
+- `GET    /api/pedidos/{id}` — Busca pedido por ID
+- `POST   /api/pedidos` — Cria um novo pedido
+- `PUT    /api/pedidos/{id}` — Atualiza um pedido existente
+- `DELETE /api/pedidos/{id}` — Remove um pedido
+- `GET    /api/pedidos/contar` — Conta o total de pedidos
 
 ## Exemplos de Status do Pedido
 - PENDENTE
